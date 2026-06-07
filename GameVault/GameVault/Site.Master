@@ -1,0 +1,221 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="GameVault.SiteMaster" %>
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> GameVault</title>
+
+    <style>
+    :root {
+  --bg-dark: #0e0e0e;
+  --bg-nav: rgba(26, 26, 26, 0.8);
+  --text-main: #ffffff;
+  --accent: #ff4dd2;
+  --accent-hover: #ff99dd;
+  --drop-glass: rgba(255, 255, 255, 0.05);
+}
+
+    .navbottbar {
+  background: var(--bg-nav);
+  overflow: hidden;
+ 
+  bottom: 0;
+  width: 100%;
+ color:hotpink;
+ padding-top:60px;
+ padding-bottom:20px;
+    }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-main);
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  color:var(--accent);
+  color:hotpink;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-nav);
+  backdrop-filter: blur(8px);
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar-section {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left {
+  justify-content: flex-start;
+}
+.navbar-right {
+  justify-content: flex-end;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: white;
+  text-shadow: 0 0 8px var(--accent);
+}
+
+/* BRAND */
+.brand {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 77, 210, 0.4);
+}
+
+.brand #vault {
+  color: var(--accent);
+  text-shadow: 0 0 12px var(--accent);
+}
+
+/* LOGIN LINK */
+#login a {
+  color: white;
+  font-size: 17px;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: 0.2s ease;
+}
+
+#login a:hover {
+  color: var(--accent-hover);
+  text-shadow: 0 0 6px var(--accent-hover);
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.dropbtn:hover {
+  background: var(--accent);
+  color: black;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--drop-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  min-width: 180px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.dropdown-content a,
+.dropdown-content .aspNet-logout {
+  color: white;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  transition: 0.2s ease;
+}
+
+.dropdown-content a:hover,
+.dropdown-content .aspNet-logout:hover {
+  background: var(--accent);
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content .aspNet-logout {
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+}
+
+
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar">
+            <div class="navbar-section navbar-left">
+                <ul class="nav-links">
+                    <li><a href="all.aspx">ALL</a></li>
+                    <li><a href="About.aspx">About</a></li>
+                    <li><a href="Default.aspx">home</a></li>
+                </ul>
+            </div>
+
+            <div class="navbar-section">
+                <div class="brand">Game<span id="vault">Vault</span></div>
+            </div>
+
+           <div class="dropdown navbar-section navbar-right">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <a href="Login.aspx">Login</a>
+      <a href="library.aspx">My Library</a>
+      <asp:LinkButton ID="lnkLogout" runat="server" OnClick="LnkLogout_Click" Text="Logout" />
+    </div>
+</div>
+        </nav>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </form>
+
+
+
+    <div class="navbottbar">
+        <ul>
+        <li>©  All rights reserved</li>
+        <li><i class="fas fa-phone"></i> +961 ** *** ***</li>
+         <li><i class="fab fa-instagram"></i> @GameVault</li>
+                <li ><i class="fas fa-envelope"></i> GameVault@outlook.com </li>
+        
+        </ul>
+      </div>
+</body>
+</html>
